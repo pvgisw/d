@@ -1,0 +1,41 @@
+import numpy as np
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+df.hist('balance')
+plt.scatter(df['balance'],df['duration'])
+plt.ylabel("duration")
+plt.xlabel("balance")
+plt.show()
+#bar graph
+fig = plt.figure(figsize = (15, 10))
+plt.bar(df["age"], df["balance"])
+plt.ylabel("balance")
+plt.xlabel("age")
+plt.show()
+sns.countplot(x="marital", hue="deposit", data=df, palette='Set1')
+sns.boxplot(x="duration",data=df,color='red')
+sns.distplot(df.duration, bins=400 , color='purple')
+vals = df['education'].value_counts().tolist()
+vals
+sns.countplot(x="education", data=df , palette='Paired')
+c=df.groupby(['education']).mean()
+c
+edu_groups = df.groupby(['education'],as_index=False)['balance'].mean()
+sns.barplot(x="balance", y="education", data=edu_groups , palette='Paired')
+plt.title('Mean Balance according to Education', fontsize=10)
+sns.scatterplot(x=df["balance"], y=df["marital"], hue=df["deposit"])
+plt.title("Deposit on the basis of martial status and balance")
+plt.show()
+dic = {"yes":1,"no":0}
+lst = ["deposit","loan","default","housing"]
+for i in lst:
+    df[i] = df[i].map(dic)
+sns.barplot(x=df['education'],y=df['loan'])
+plt.title("Impact of Loan on Education")
+fig, ax = plt.subplots()
+labels=df['marital'].value_counts()
+ax.pie(labels.values, labels=labels.index, autopct='%1.1f%%')
+plt.show()
+sns.pairplot(df)
+plt.show()
