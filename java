@@ -104,3 +104,9 @@ public class Wordcount {
 	}
 
 }
+
+
+
+
+
+hadoop jar /home/hduser/Desktop/test2.jar proj2.counter /shreek/access_log_short.txt /shreek/out
