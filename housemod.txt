@@ -1,0 +1,103 @@
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+-data=pd.read_excel("House_dat_set_batch_4.xlsx")
+print(data)
+-data.isna().sum()
+-data.isnull().sum()
+-data.corr()
+-data.info()
+-data.describe()
+-data['furnishingstatus'].value_counts()
+-from sklearn.linear_model import LinearRegression
+from sklearn.model_selection import train_test_split
+X=data["area"]
+y=data["price"]
+X = data['area'].values.reshape(-1,1)
+y = data['price'].values.reshape(-1,1)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=0)
+-reg=LinearRegression().fit(X_train,y_train)
+-y_pred=reg.predict(X_test)
+y_pred2=reg.predict(X_train)
+-plt.scatter(X_test,y_test)
+plt.plot(X_test,y_pred,color="red")
+plt.xlabel("Area")
+plt.ylabel("Price")
+-print("Beta1=",reg.coef_)
+-print("Beta0=",reg.intercept_)
+-from sklearn.metrics import r2_score
+r2_score(y_test,y_pred)
+-from sklearn.metrics import mean_squared_error
+mse1=mean_squared_error(y_test,y_pred,squared=True)
+mse1
+-mse2=mean_squared_error(y_train,y_pred2,squared=True)
+mse2
+-rmse1=mean_squared_error(y_test,y_pred,squared=False)
+rmse1
+-rmse2=mean_squared_error(y_train,y_pred2,squared=False)
+rmse2
+-p=data[["area","bedrooms","bathrooms","stories"]]
+q=data[["price"]]
+-P = data[['area','bedrooms','bathrooms','stories']].values.reshape(-1,1)
+Q = data[['price']].values.reshape(-1,1)
+P_train, P_test, Q_train, Q_test = train_test_split(p,q, test_size=0.25, random_state=0)
+-model=LinearRegression().fit(P_train,Q_train)
+Q_pred=model.predict(P_test)
+-print("Beta1=",reg.coef_)
+-print("Beta1=",reg.intercept_)
+-r2_score(Q_test,Q_pred)
+-mse1=mean_squared_error(Q_test,Q_pred,squared=True)
+mse1
+-rmse1=mean_squared_error(Q_test,Q_pred,squared=False)
+rmse1
+-sns.lmplot(x="area",y="price",hue="furnishingstatus",data=data,markers=["o","x","+"])
+-from sklearn import preprocessing
+-label_encoder = preprocessing.LabelEncoder()
+data['furnishingstatus']= label_encoder.fit_transform(data['furnishingstatus'])
+data['furnishingstatus'].unique()
+-data['mainroad']= label_encoder.fit_transform(data['mainroad'])
+data['mainroad'].unique()
+-data['guestroom']= label_encoder.fit_transform(data['guestroom'])
+data['guestroom'].unique()
+-data['basement']= label_encoder.fit_transform(data['basement'])
+data['basement'].unique()
+-data['hotwaterheating']= label_encoder.fit_transform(data['hotwaterheating'])
+data['hotwaterheating'].unique()
+-data['prefarea']= label_encoder.fit_transform(data['prefarea'])
+data['prefarea'].unique()
+-data
+-data.corr()
+-plt.figure(figsize=(10,8))
+sns.heatmap(data.corr(),annot=True,fmt=".2f")
+-x1=data[["area","bathrooms","stories","airconditioning"]]
+y1=data[["price"]]
+X1_train, X1_test, Y1_train, Y1_test = train_test_split(x1,y1, test_size=0.25, random_state=0)
+-model=LinearRegression().fit(X1_train,Y1_train)
+Y1_pred=model.predict(X1_test)
+-r2_score(Y1_test,Y1_pred)
+-mse=mean_squared_error(Y1_test,Y1_pred,squared=True)
+mse
+-rmse=mean_squared_error(Y1_test,Y1_pred,squared=False)
+rmse
+-from sklearn.preprocessing import MinMaxScaler
+scaler = MinMaxScaler()
+names=data.columns
+model1=scaler.fit_transform(data)
+scaled_df=pd.DataFrame(model1,columns=names)
+scaled_df
+-x1=scaled_df[["area","bathrooms","stories","airconditioning"]]
+y1=scaled_df[["price"]]
+X1_train, X1_test, Y1_train, Y1_test = train_test_split(x1,y1, test_size=0.25, random_state=0)
+-model=LinearRegression().fit(X1_train,Y1_train)
+Y1_pred=model.predict(X1_test)
+Y2_pred=model.predict(X1_train)
+-r2_score(Y1_test,Y1_pred)
+-mse=mean_squared_error(Y1_test,Y1_pred,squared=True)
+mse
+-rmse=mean_squared_error(Y1_test,Y1_pred,squared=False)
+rmse
+-r2_score(Y1_train,Y2_pred)
+-mse=mean_squared_error(Y1_train,Y2_pred,squared=True)
+mse
+-rmse=mean_squared_error(Y1_train,Y2_pred,squared=False)
+rmse

@@ -1,0 +1,54 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+-df=pd.read_csv("") df
+-df.columns
+-val=df["furnishingstatus'].value_counts() val
+-plt.pie(val, labels=["semi-furnished","unfurnished","furnished"],startangle=90
+plt.legend()
+plt.title("Furnishing Status")
+-val2=df["bedrooms"].value_counts() val2
+-plt.pie(val2, labels=["3","2","4","5","6","1"],startangle=90,colors=["red","green","blue","black","yellow"]
+plt.legend()
+plt.title("Bedrooms")
+-sns.boxplot(df["price"])
+plt.title("Price")
+plt.grid()
+plt.show()
+-sns.boxplot(df["area"])
+plt.title("AREA")
+plt.grid()
+plt.show()
+-sns.barplot(x='furnishingstatus',
+	      y='price', hue='furnishingstatus',
+	      data=df)
+plt.grid()
+plt.show()
+-plt.hist(df['price'], density=1,color='orange',alpha=0.7)
+plt.xlabel('X-Axis')
+plt.ylabel('Y-Axix')
+plt.grid()
+plt.show()
+-plt.hist(df['area'], density=1,color='green',alpha=0.7)
+plt.xlabel('X-Axis')
+plt.ylabel('Y-Axix')
+plt.grid()
+plt.show()
+-sns,scatterplot(x="area",
+		  y="price",hue="furnishingstatus",
+		  data=df)
+plt.grid()
+plt.show()
+-sns.pairplot(df,hue="furnishingstatus")
+plt.grid()
+plt.show()
+-sns.distplot(df['area'], kde =True, color='black',bins=30)
+plt.grid()
+plt.title("AREA")
+plt.show()
+-sns.distplot(df['price'], kde =True, color='black',bins=30)
+plt.grid()
+plt.title("PRICE")
+plt.show()
+-sns.countplot(x=val)
