@@ -1,0 +1,45 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+-df = pd.read_csv("heart (2).csv") df
+-df.isna().sum()
+-df["target"].value_counts()
+-df["target"].value_counts().plot(kind="bar", color=["red", "black"]);
+-df["sex"].value_counts().plot(kind="bar", color=["Black", "red"]);
+-sns.countplot(x=df['sex'],hue=df['target'])
+-df.age.plot.hist()
+-sns.countplot(x=df['cp'],hue=df['target'])
+-sns.heatmap(df.corr(),
+                 annot =True,
+                 linewidths=0.8,
+                 fmt=".2f",
+                 );
+-sns.countplot(x='age',data=df)
+-sns.countplot(x='cp',data=df)
+-sns.displot(df,x='age')
+-sns.displot(df,x='target')
+-sns.boxplot(x='target', y='age', data=df)
+-sns.boxplot(x='target', y='thal', data=df)
+-sns.boxplot(x='target', y='chol', data=df)
+-sns.histplot(df,x='age')
+-df.hist()
+-sns.pairplot(df)
+-colors = ['blue','green','yellow']
+explode = [0,0,0.1]
+plt.pie([len(Young),len(Middle),len(Elder)],labels=['young ages','middle ages','elderly ages'],explode=explode,colors=colors, autopct='%1.1f%%')
+plt.tight_layout()
+-colors = ['blue','green','yellow']
+explode = [0,0,0.1]
+
+plt.pie([len(df['cp']),len(df['thalach']),len(df['oldpeak'])],labels=['chestpain','thalach','oldpeak'],explode=explode,colors=colors, autopct='%1.1f%%')
+plt.tight_layout()
+-sns.scatterplot(df)
+-sns.scatterplot(data=df,x='age',y='target')
+-sns.scatterplot(data=df,x='chol',y='age')
+-sns.scatterplot(data=df,x='age',y='thal')
+-sns.scatterplot(data=df,x='age',y='oldpeak')
+-pd.plotting.scatter_matrix(df)
+-sns.lineplot(df,x=df['thal'],y=df['chol'])
+-sns.lineplot(df,x=df['sex'],y=df['target'])
+-sns.displot(df['age'], kind='kde')
