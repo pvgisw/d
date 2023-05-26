@@ -1,0 +1,35 @@
+import pandas as pd
+import numpy as np
+import seaborn as sns
+import matplotlib.pyplot as plt
+dictionary={"yes":1,"no":0}
+lst=["default","housing","loan","deposit"]
+for i in lst:
+  data[i]=data[i].map(dictionary)
+data=pd.get_dummies(data , columns=["job",'marital',"education","poutcome","contact","month"])
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn import metrics
+from sklearn.metrics import accuracy_score,confusion_matrix
+from sklearn import tree
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.linear_model import LinearRegression
+from sklearn.linear_model import LogisticRegression
+
+x=data.drop("deposit",axis=1)
+y=data["deposit"]
+x_train,x_test,y_train,y_test=train_test_split(x,y, test_size=0.3)
+clf_ent=DecisionTreeClassifier(criterion="entropy",max_depth=5)
+clf_ent=clf_ent.fit(x_train,y_train)
+y_pred=clf_ent.predict(x_test)
+acc=metrics.accuracy_score(y_test,y_pred)
+print("Accuracy is : ",acc)
+cm=metrics.confusion_matrix(y_test,y_pred)
+print("Confusion matrix:",cm)
+plt.figure(figsize=(15,10))
+tree.plot_tree(clf_ent,fontsize=16)
+model=LogisticRegression()
+model=model.fit(x_train,y_train)
+ypre=model.predict(x_test)
+accuracy_score(y_test,y_pred)
+confusion_matrix(y_test,y_pred)
